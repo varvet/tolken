@@ -207,8 +207,6 @@ Metrics/ModuleLength:
 
 Metrics/MethodLength:
   Max: 25
-  Exclude:
-    - db/migrate/**/*.rb # mostly create table blocks
 
 Metrics/LineLength:
   Max: 125
@@ -222,11 +220,7 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Enabled: true
   Exclude:
-    - config/environments/*.rb
-    - config/initializers/simple_form_bootstrap.rb
-    - config/routes.rb
-    - db/seeds.rb
-    - bin/seed_daily_booking_mailer.rb
+    - tolken.gemspec
     - spec/**/*
 
 Metrics/PerceivedComplexity:
@@ -245,8 +239,6 @@ Metrics/AbcSize:
   Description: "A calculated magnitude based on number of assignments, branches, and conditions."
   Reference: "http://c2.com/cgi/wiki?AbcMetric"
   Max: 20
-  Exclude:
-    - db/migrate/**/*.rb # mostly create table blocks
 
 Metrics/ParameterLists:
   Description: "Avoid parameter lists longer than three or four parameters."
@@ -386,8 +378,6 @@ Layout/SpaceBeforeComma:
 
 Layout/LeadingCommentSpace:
   Enabled: true
-  Exclude:
-    - spec/teaspoon_env.rb
 
 # -- Style
 
@@ -598,8 +588,7 @@ Style/MixinUsage:
   Enabled: true
 
 Style/StderrPuts:
-  Exclude:
-    - bin/yarn
+  Enabled: true
 
 Style/BlockComments:
   Enabled: false # Just for big blocks, ok?
