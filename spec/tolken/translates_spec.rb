@@ -30,6 +30,29 @@ RSpec.describe Tolken::Translates do
         expect { post.title(:xy) }.to raise_error(ArgumentError, "Invalid locale xy")
       end
     end
+
+    describe "writer" do
+      it "allows the translation hash to be set" do
+        post.title = { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" }
+        expect(post.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
+      end
+
+      it "persists hash with save!" do
+        post.title = { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" }
+        post.save!
+
+        expect(post.reload.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
+      end
+
+      it "persists hash with update_attributes!" do
+        post.update_attributes!(title: { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" })
+        expect(post.reload.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
+      end
+
+      it "persists hash with update_attribute" do
+        post.update_attribute(:title, { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" })
+        expect(post.reload.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
+      end
     end
   end
 end
