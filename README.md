@@ -8,6 +8,7 @@ In Tolken a translatable field is just a Ruby hash which makes it easy to reason
 [![Build Status](https://travis-ci.org/varvet/tolken.svg?branch=master)](https://travis-ci.org/varvet/tolken)
 [![Maintainability](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/maintainability)](https://codeclimate.com/github/varvet/tolken/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/test_coverage)](https://codeclimate.com/github/varvet/tolken/test_coverage)
+[![semver stability](https://api.dependabot.com/badges/compatibility_score?dependency-name=tolken&package-manager=bundler&version-scheme=semver)](https://dependabot.com/compatibility-score.html?dependency-name=tolken&package-manager=bundler&version-scheme=semver)
 
 ## Installation
 Add this line to your application's Gemfile:
