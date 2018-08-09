@@ -32,4 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "with_model"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "simple_form"
+  spec.add_development_dependency "rubocop", "0.52.1"
+  spec.add_development_dependency "rubocop-rspec"
 end
