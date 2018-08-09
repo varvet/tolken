@@ -60,9 +60,6 @@ Performance/Count:
 Lint/Debugger:
   Enabled: true
 
-Lint/EndAlignment:
-  EnforcedStyleAlignWith: variable
-
 Lint/AssignmentInCondition:
   Description: "bad: `if foo = bar` ok: `if (foo = bar)`"
   StyleGuide: "https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition"
@@ -76,18 +73,8 @@ Lint/UnusedMethodArgument:
   StyleGuide: "https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars"
   AllowUnusedKeywordArguments: false
 
-Lint/BlockAlignment:
-  Enabled: true
-
 Lint/CircularArgumentReference:
   Description: "Don't refer to the keyword argument in the default value."
-  Enabled: true
-
-Lint/ConditionPosition:
-  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#same-line-condition"
-  Enabled: true
-
-Lint/DefEndAlignment:
   Enabled: true
 
 Lint/DeprecatedClassMethods:
@@ -161,10 +148,6 @@ Lint/StringConversionInInterpolation:
 
 Lint/UnderscorePrefixedVariableName:
   Description: "Do not use prefix `_` for a variable that is used."
-  Enabled: true
-
-Lint/UnneededDisable:
-  Description: "Checks for rubocop:disable comments that can be removed."
   Enabled: true
 
 Lint/UnreachableCode:
@@ -266,6 +249,19 @@ Naming/BinaryOperatorParameterName:
   Enabled: false # don't require variable to <=> to be named just "other"
 
 # -- Layout
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+Layout/BlockAlignment:
+  Enabled: true
+
+Layout/ConditionPosition:
+  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#same-line-condition"
+  Enabled: true
+
+Layout/DefEndAlignment:
+  Enabled: true
 
 Layout/IndentArray:
   Enabled: false
@@ -560,7 +556,10 @@ Style/TernaryParentheses:
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: no_comma
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: no_comma
 
 Style/WordArray:
@@ -571,7 +570,10 @@ Style/GuardClause:
   StyleGuide: "https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals"
   Enabled: false
 
-Style/MethodMissing:
+Style/MethodMissingSuper:
+  Enabled: true
+
+Style/MissingRespondToMissing:
   Enabled: true
 
 Style/SymbolProc:

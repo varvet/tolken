@@ -74,8 +74,8 @@ RSpec.describe Tolken::Translates do
         expect(post.reload.title).to eq("en" => "Hi", "sv" => "hej då")
       end
 
-      it "persists hash with update_attributes!" do
-        post.update_attributes!(title: { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" })
+      it "persists hash with update!" do
+        post.update!(title: { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" })
         expect(post.reload.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
       end
 
