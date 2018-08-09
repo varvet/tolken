@@ -1,25 +1,40 @@
 module Tolken
   module Translates
-    def translates(*fields)
-      fields.each do |field|
-        define_getter(field)
-        serialize(field, HashSerializer)
+    def translates(field_name, options = {})
+      define_getter(field_name)
+      serialize(field_name, HashSerializer)
+
+      if options[:presence]
+        store_accessor(field_name, *I18n.available_locales.map { |locale| "#{field_name}_#{locale}" })
+        define_validator(field_name) if options[:presence]
       end
     end
 
     private
 
-    def define_getter(field)
-      define_method(field) do |locale = nil|
-        return self[field.to_sym] unless locale
+    def define_getter(field_name)
+      define_method(field_name) do |locale = nil|
+        return self[field_name.to_sym] unless locale
 
         begin
-          self[field.to_sym].fetch(locale.to_s)
+          self[field_name.to_sym].fetch(locale.to_s)
         rescue IndexError
           raise ArgumentError, "Invalid locale #{locale}" unless I18n.available_locales.include?(locale.to_sym)
           nil
         end
       end
+    end
+
+    def define_validator(field)
+      validate(
+        proc do
+          invalid = I18n.available_locales.map do |locale|
+            errors.add(:"#{field}_#{locale}", :blank) if self[field][locale.to_s].blank?
+          end
+
+          errors.add(field) if invalid.compact.present?
+        end
+      )
     end
   end
 end

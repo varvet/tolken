@@ -2,14 +2,19 @@ require "spec_helper"
 
 RSpec.describe Tolken::Translates do
   with_model :Post do
-    table { |t| t.jsonb(:title) }
+    table do |t|
+      t.jsonb(:title)
+      t.jsonb(:source)
+    end
+
     model do
       extend(Tolken)
       translates(:title)
+      translates(:source, presence: true)
     end
   end
 
-  let(:post) { Post.create!(title: { en: "Hi", sv: "Hej" }) }
+  let(:post) { Post.create!(title: { en: "Hi", sv: "Hej" }, source: { en: "E", sv: "S", de: "D" }) }
 
   describe "#translates" do
     describe "reader" do
@@ -52,6 +57,15 @@ RSpec.describe Tolken::Translates do
       it "persists hash with update_attribute" do
         post.update_attribute(:title, { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" })
         expect(post.reload.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
+      end
+
+      it "adds validation error if presence option set to true when saving" do
+        post.source = { sv: "A" }
+        post.save
+
+        expect(post.errors.messages).to eq(
+          source: ["is invalid"], source_en: ["can't be blank"], source_de: ["can't be blank"]
+        )
       end
     end
   end
