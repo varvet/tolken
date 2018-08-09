@@ -134,7 +134,9 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/varvet
     Make changes and commits, consider squashing commits that doesn't add anything by themselves
     $ rubocop
     $ rspec
-    Commit, if possible squash in original locations, changes required by rubocop and or failing tests
+    $ open coverage/index.html
+    If test coverage is missing address it or add a description to your PR why it is lacking.
+    Commit, if possible squash in original locations, changes required by rubocop and or failing tests.
     $ git checkout master
     $ git pull --rebase
     $ git checkout my-feature-branch

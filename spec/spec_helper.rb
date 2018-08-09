@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "simplecov"
+SimpleCov.start("rails")
+
 require "bundler/setup"
 require "tolken"
 require "with_model"
