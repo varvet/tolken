@@ -5,6 +5,10 @@ Tolken's API is more verbose than most similar gems. The philosophy is that you 
 
 In Tolken a translatable field is just a Ruby hash which makes it easy to reason about. See *Usage* for details.
 
+[![Build Status](https://travis-ci.org/varvet/tolken.svg?branch=master)](https://travis-ci.org/varvet/tolken)
+[![Maintainability](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/maintainability)](https://codeclimate.com/github/varvet/tolken/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/test_coverage)](https://codeclimate.com/github/varvet/tolken/test_coverage)
+
 ## Installation
 Add this line to your application's Gemfile:
 
@@ -122,7 +126,22 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/tolken. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/varvet/tolken. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct. To create a pull request follow these steps:
+
+    $ git clone git@github.com:varvet/tolken.git
+    $ cd tolken
+    $ git checkout my-feature-branch
+    Make changes and commits, consider squashing commits that doesn't add anything by themselves
+    $ rubocop
+    $ rspec
+    $ open coverage/index.html
+    If test coverage is missing address it or add a description to your PR why it is lacking.
+    Commit, if possible squash in original locations, changes required by rubocop and or failing tests.
+    $ git checkout master
+    $ git pull --rebase
+    $ git checkout my-feature-branch
+    $ git rebase master
+    $ git push
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

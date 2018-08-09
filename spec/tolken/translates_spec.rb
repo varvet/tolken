@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 RSpec.describe Tolken::Translates do
@@ -78,7 +80,7 @@ RSpec.describe Tolken::Translates do
       end
 
       it "persists hash with update_attribute" do
-        post.update_attribute(:title, { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" })
+        post.update_attribute(:title, en: "Bye", sv: "hej då", de: "Auf Wiedersehen")
         expect(post.reload.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
       end
 

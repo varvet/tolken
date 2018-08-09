@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+require "simplecov"
+SimpleCov.start("rails")
+
 require "bundler/setup"
 require "tolken"
 require "with_model"
@@ -17,7 +22,8 @@ RSpec.configure do |config|
   config.extend(WithModel)
 
   config.before(:suite) do
-    ActiveRecord::Base.establish_connection("postgres://localhost/tolken_test?pool=5")
+    database_name = ENV["TRAVIS"] ? "travis_ci_test" : "tolken_test"
+    ActiveRecord::Base.establish_connection("postgres://localhost/#{database_name}?pool=5")
 
     I18n.available_locales = %i[en sv de]
     I18n.enforce_available_locales = true
