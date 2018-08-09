@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails"
 require "simple_form"
 require_relative "../tolken"

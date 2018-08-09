@@ -1,4 +1,6 @@
 
+# frozen_string_literal: true
+
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "tolken/version"
@@ -18,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/varvet/tolken"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files         = %x(git ls-files -z).split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
@@ -26,12 +28,12 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "5.2.0.rc2"
 
   spec.add_development_dependency "bundler", "~> 1.16"
+  spec.add_development_dependency "pg"
+  spec.add_development_dependency "pry"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "pg"
-  spec.add_development_dependency "with_model"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "simple_form"
   spec.add_development_dependency "rubocop", "0.52.1"
   spec.add_development_dependency "rubocop-rspec"
+  spec.add_development_dependency "simple_form"
+  spec.add_development_dependency "with_model"
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "tolken/hash_serializer"
 
 RSpec.describe Tolken::HashSerializer do
@@ -13,11 +15,11 @@ RSpec.describe Tolken::HashSerializer do
     end
 
     it "returns a hash if given a hash" do
-      expect(Tolken::HashSerializer.load({ foo: "bar" })).to eq("foo" => "bar")
+      expect(Tolken::HashSerializer.load(foo: "bar")).to eq("foo" => "bar")
     end
 
     it "returned hash has indifferent access" do
-      expect(Tolken::HashSerializer.load({ foo: "bar" })[:foo]).to eq("bar")
+      expect(Tolken::HashSerializer.load(foo: "bar")[:foo]).to eq("bar")
     end
 
     it "returns an empty hash if given nil" do

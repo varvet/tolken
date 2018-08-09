@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tolken
   module Translates
     def translates(field_name, options = {})
