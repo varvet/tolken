@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "tolken"
 require "with_model"
+require "pry"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -17,5 +18,9 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     ActiveRecord::Base.establish_connection("postgres://localhost/tolken_test?pool=5")
+
+    I18n.available_locales = %i[en sv de]
+    I18n.enforce_available_locales = true
+    I18n.default_locale = :en
   end
 end
