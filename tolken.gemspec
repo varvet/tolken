@@ -9,8 +9,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Nicklas Ramhöj, Julia Fridberg"]
   spec.email         = ["nicklas.ramhoj@varvet.com, julia.fridberg@varvet.com"]
 
-  spec.summary       = %q{Yet another psql jsob translation library for Rails}
-  spec.description   = %q{Designed to be less magic than most other translation projects.}
+  spec.summary       = "A down-to-earth database translation Gem for Rails using psql jsonb"
+  spec.description   = """
+    #{spec.summary}. Designed to be less magic than most other translation projects.
+    Tolken's API is more verbose than most similar gems. The philosophy is that you should be aware of when you're dealing with translatable fields and what language you're interested in in any given moment. This comes from experience working with gems such as [Globalize](https://github.com/globalize/globalize), while it might fit some projects we've found that the magic that starts out as a convenience quickly becomes a liability.
+    In Tolken a translatable field is just a Ruby hash which makes it easy to reason about. See *Usage* for details.
+  """
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 

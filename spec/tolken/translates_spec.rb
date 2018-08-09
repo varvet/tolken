@@ -4,17 +4,26 @@ RSpec.describe Tolken::Translates do
   with_model :Post do
     table do |t|
       t.jsonb(:title)
-      t.jsonb(:source)
     end
 
     model do
       extend(Tolken)
       translates(:title)
-      translates(:source, presence: true)
     end
   end
 
-  let(:post) { Post.create!(title: { en: "Hi", sv: "Hej" }, source: { en: "E", sv: "S", de: "D" }) }
+  with_model :Country do
+    table do |t|
+      t.jsonb(:name)
+    end
+
+    model do
+      extend(Tolken)
+      translates(:name, presence: true)
+    end
+  end
+
+  let(:post) { Post.create!(title: { en: "Hi", sv: "Hej" }) }
 
   describe "#translates" do
     describe "reader" do
@@ -49,6 +58,20 @@ RSpec.describe Tolken::Translates do
         expect(post.reload.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
       end
 
+      it "persists from constructor" do
+        post = Post.new(title: { en: "Hi", sv: "Hej" })
+        post.save!
+
+        expect(post.reload.title).to eq("en" => "Hi", "sv" => "Hej")
+      end
+
+      it "persists modifled hash with save!" do
+        post.title[:sv] = "hej då"
+        post.save!
+
+        expect(post.reload.title).to eq("en" => "Hi", "sv" => "hej då")
+      end
+
       it "persists hash with update_attributes!" do
         post.update_attributes!(title: { en: "Bye", sv: "hej då", de: "Auf Wiedersehen" })
         expect(post.reload.title).to eq("en" => "Bye", "sv" => "hej då", "de" => "Auf Wiedersehen")
@@ -60,11 +83,11 @@ RSpec.describe Tolken::Translates do
       end
 
       it "adds validation error if presence option set to true when saving" do
-        post.source = { sv: "A" }
-        post.save
+        country = Country.new(name: { sv: "Sweden" })
+        country.save
 
-        expect(post.errors.messages).to eq(
-          source: ["is invalid"], source_en: ["can't be blank"], source_de: ["can't be blank"]
+        expect(country.errors.messages).to eq(
+          name: ["is invalid"], name_en: ["can't be blank"], name_de: ["can't be blank"]
         )
       end
     end

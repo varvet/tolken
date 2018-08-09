@@ -1,19 +1,15 @@
 # Tolken
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tolken`. To experiment with that code, run `bin/console` for an interactive prompt.
+Tolken is a Ruby on Rails Gem that allows you to translate database fields using Postgres' jsob data type.
 
-TODO: Delete this and the text above, and describe your gem
+Tolken's API is more verbose than most similar gems. The philosophy is that you should be aware of when you're dealing with translatable fields and what language you're interested in in any given moment. This comes from experience working with gems such as [Globalize](https://github.com/globalize/globalize), while it might fit some projects we've found that the magic that starts out as a convenience quickly becomes a liability.
+
+In Tolken a translatable field is just a Ruby hash which makes it easy to reason about. See *Usage* for details.
 
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
 gem "tolken"
-```
-
-if you're using [SimpleForm](https://github.com/plataformatec/simple_form) you might want to
-
-```ruby
-gem "tolken", require: "tolken/simle_form"
 ```
 
 And then execute:
@@ -25,7 +21,95 @@ Or install it yourself as:
     $ gem install tolken
 
 ## Usage
-TODO: Write usage instructions here
+Make sure you're running Postgres and that the column you want to translate is of the `jsonb` type:
+
+### Setup
+```rb
+class CreatePosts < ActiveRecord::Migration[5.2]
+  def change
+    create_table :posts do |t|
+      t.jsonb :title, :jsonb, null: false
+      t.timestamps
+    end
+
+    execute "CREATE INDEX posts_title_index ON posts USING gin (title)"
+  end
+end
+```
+
+Next you need to configure `I18n` if you haven't already (usually in *config/initializers/locale.rb*):
+
+```rb
+I18n.available_locales = %i[en sv de]
+```
+
+Tolken expects you to only use translations for the locales in `I18n.available_locales`.
+
+### Persistence
+Extend your model with `Tolken` and tell it what column(s) you want to translate:
+
+```rb
+class Post < ApplicationRecord
+  extend Tolken
+  translates :title
+end
+```
+
+You can now work with `title` as follows:
+
+```rb
+post = Post.create(title: { en: "News", sv: "Nyheter" })
+
+post.title # => { en: "News", sv: "Nyheter" }
+post.title(:en) # => "News"
+post.title(:sv) # => "Nyheter"
+post.title(:dk) # ArgumentError, "Invalid locale dk"
+post.title(:de) # => nil
+
+post.title = { en: "News", sv: "Nyheter" }
+post.title[:en] = "News"
+```
+
+### Validation
+Tolken comes with support for the *presence* validator:
+
+```rb
+class Post < ApplicationRecord
+  extend Tolken
+  translates :title, presence: true
+end
+
+post = Post.create(title: { en: "News", sv: "" })
+post.errors.messages # => { name_sv: ["can't be blank"] }
+```
+
+Tolken checks that all `I18n.available_locales` has present values.
+
+### View Forms
+Tolken has opt-in support for integrating with [SimpleForm](https://github.com/plataformatec/simple_form). To opt-in update your Gemfile:
+
+```ruby
+gem "tolken", require: "tolken/simle_form"
+```
+
+Now if you add a simple_form field for a translatable field SimpleForm will generate an input per language version:
+
+```erb
+<%= simple_form_for(@post) do |form| %>
+  <%= form.input :title %>
+  <%= form.submit %>
+<% end %>
+```
+
+By default a text input field is generated. If you want another type you can override with:
+
+```erb
+<%= form.input :title, type: :text %>
+```
+
+This will instead render one text area per language version.
+
+The specs for [translates](spec/tolken/translates_spec.rb) is a good resource of additional usage examples.
 
 ## Development
 
