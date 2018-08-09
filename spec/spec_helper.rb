@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "tolken"
+require "with_model"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -10,5 +11,11 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  config.extend(WithModel)
+
+  config.before(:suite) do
+    ActiveRecord::Base.establish_connection("postgres://localhost/tolken_test?pool=5")
   end
 end
