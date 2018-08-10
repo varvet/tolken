@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tolken (0.3.1)
+    tolken (0.3.2)
       rails (~> 5.2)
 
 GEM
