@@ -1,9 +1,7 @@
 # Tolken
 Tolken is a Ruby on Rails Gem that allows you to translate database fields using Postgres' jsob data type.
 
-Tolken's API is more verbose than most similar gems. The philosophy is that you should be aware of when you're dealing with translatable fields and what language you're interested in in any given moment. This comes from experience working with gems such as [Globalize](https://github.com/globalize/globalize), while it might fit some projects we've found that the magic that starts out as a convenience quickly becomes a liability.
-
-In Tolken a translatable field is just a Ruby hash which makes it easy to reason about. See *Usage* for details.
+Tolken's API is more verbose than most similar gems. The idea is that you should be aware of when you're dealing with translatable fields and what language you're interested in in any given moment.  In Tolken a translatable field is just a Ruby hash which makes it easy to reason about. See *Usage* for details.
 
 [![Build Status](https://travis-ci.org/varvet/tolken.svg?branch=master)](https://travis-ci.org/varvet/tolken)
 [![Maintainability](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/maintainability)](https://codeclimate.com/github/varvet/tolken/maintainability)
