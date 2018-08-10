@@ -89,7 +89,7 @@ post.errors.messages # => { name_sv: ["can't be blank"] }
 Tolken checks that all `I18n.available_locales` has present values.
 
 ### View Forms
-Tolken has opt-in support for integrating with [SimpleForm](https://github.com/plataformatec/simple_form). To opt-in update your Gemfile:
+While creating form inputs for your locale versions are as simple as adding `[<locale>]` to the html name attribute Tolken provides opt-in support for integrating with [SimpleForm](https://github.com/plataformatec/simple_form). To opt-in update your Gemfile:
 
 ```ruby
 gem "tolken", require: "tolken/simle_form"
@@ -108,6 +108,19 @@ By default a text input field is generated. If you want another type you can ove
 
 ```erb
 <%= form.input :title, type: :text %>
+```
+
+Without simple form your inputs might look something like:
+
+```html
+<input name="post[title][en]" id="post_title_en">
+<input name="post[title][sv]" id="post_title_sv">
+```
+
+Don't forget whitelist the nested locale params in your controller:
+
+```rb
+params.require(:post).permit(title: I18n.available_locales)
 ```
 
 This will instead render one text area per language version.
