@@ -92,6 +92,13 @@ RSpec.describe Tolken::Translates do
           name: ["is invalid"], name_en: ["can't be blank"], name_de: ["can't be blank"]
         )
       end
+
+      it "doesn't generate acccessible locale acccessors" do
+        expect(Country.new).not_to respond_to(:name_en)
+        expect(Country.new).not_to respond_to(:name_en=)
+      end
+    end
+
     end
   end
 end

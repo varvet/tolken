@@ -7,7 +7,10 @@ module Tolken
       serialize(field_name, HashSerializer)
 
       if options[:presence]
-        store_accessor(field_name, *I18n.available_locales.map { |locale| "#{field_name}_#{locale}" })
+        validation_names = I18n.available_locales.map { |locale| "#{field_name}_#{locale}" }
+        readers = store_accessor(field_name, *validation_names)
+        private(*(readers + readers.map { |name| "#{name}=" }))
+
         define_validator(field_name) if options[:presence]
       end
     end
