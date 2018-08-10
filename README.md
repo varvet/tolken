@@ -1,8 +1,9 @@
 # Tolken
-Straightforward database translations using psql jsonb
+Straightforward Rails database translations using psql jsonb
 
 Tolken's API is more verbose than most similar gems. The idea is that you should be aware of when you're dealing with translatable fields and what language you're interested in in any given moment. In tolken a translatable field is just a Ruby hash which makes it easy to reason about. See *Usage* for details.
 
+[![Gem Version](https://badge.fury.io/rb/tolken.svg)](https://badge.fury.io/rb/tolken)
 [![Build Status](https://travis-ci.org/varvet/tolken.svg?branch=master)](https://travis-ci.org/varvet/tolken)
 [![Maintainability](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/maintainability)](https://codeclimate.com/github/varvet/tolken/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/test_coverage)](https://codeclimate.com/github/varvet/tolken/test_coverage)
