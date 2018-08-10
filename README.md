@@ -96,7 +96,7 @@ Tolken checks that all `I18n.available_locales` has present values.
 While creating form inputs for your locale versions are as simple as adding `[<locale>]` to the html name attribute Tolken provides opt-in support for integrating with [SimpleForm](https://github.com/plataformatec/simple_form). To opt-in update your Gemfile:
 
 ```ruby
-gem "tolken", require: "tolken/simle_form"
+gem "tolken", require: "tolken/simple_form"
 ```
 
 Now if you add a simple_form field for a translatable field SimpleForm will generate an input per language version:
