@@ -7,17 +7,15 @@ require "tolken/version"
 Gem::Specification.new do |spec|
   spec.name          = "tolken"
   spec.version       = Tolken::VERSION
-  spec.authors       = ["Nicklas Ramhöj, Julia Friberg"]
-  spec.email         = ["nicklas.ramhoj@varvet.com, julia.friberg@varvet.com"]
+  spec.authors       = ["Nicklas Ramhöj", "Julia Friberg"]
+  spec.email         = ["nicklas.ramhoj@varvet.com", "julia.friberg@varvet.com"]
 
-  spec.summary       = "A down-to-earth database translation Gem for Rails using psql jsonb"
-  spec.description   = """
-    #{spec.summary}.
-    Designed to be less magic than most other translation projects. You should be aware of when you're dealing with
-    translatable fields and what language you're interested in at any given moment. This comes from experience working with
-    gems such as Globalize, while it might fit some projects we've found that the magic that starts out as a convenience
-    quickly becomes a liability. In Tolken a translatable field is just a Ruby hash which makes it easy to reason about.
-  """
+  spec.summary       = "Straightforward Rails database translations using psql jsonb"
+  spec.description   = %q{
+    Tolken's API is more verbose than most similar gems. The idea is that you should be aware of when you're dealing with
+    translatable fields and what language you're interested in in any given moment. In tolken a translatable field is just a
+    Ruby hash which makes it easy to reason about.
+  }
   spec.homepage      = "https://github.com/varvet/tolken"
   spec.license       = "MIT"
 

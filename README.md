@@ -1,8 +1,9 @@
 # Tolken
-Tolken is a Ruby on Rails Gem that allows you to translate database fields using Postgres' jsob data type.
+Straightforward Rails database translations using psql jsonb
 
-Tolken's API is more verbose than most similar gems. The idea is that you should be aware of when you're dealing with translatable fields and what language you're interested in in any given moment.  In Tolken a translatable field is just a Ruby hash which makes it easy to reason about. See *Usage* for details.
+Tolken's API is more verbose than most similar gems. The idea is that you should be aware of when you're dealing with translatable fields and what language you're interested in in any given moment. In tolken a translatable field is just a Ruby hash which makes it easy to reason about. See *Usage* for details.
 
+[![Gem Version](https://badge.fury.io/rb/tolken.svg)](https://badge.fury.io/rb/tolken)
 [![Build Status](https://travis-ci.org/varvet/tolken.svg?branch=master)](https://travis-ci.org/varvet/tolken)
 [![Maintainability](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/maintainability)](https://codeclimate.com/github/varvet/tolken/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/72c772179a8baa586f7f/test_coverage)](https://codeclimate.com/github/varvet/tolken/test_coverage)
@@ -134,7 +135,7 @@ The specs for [translates](spec/tolken/translates_spec.rb) is a good resource of
 ## Development
 
 ### Native dependencies
-You need to have Postgres installed on your system. This can be done on Mac OS with `brew install postgres`.
+You need to have postgresql installed on your system. This can be done on Mac OS with `brew install postgresql`.
 
 ### Ruby setup
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
