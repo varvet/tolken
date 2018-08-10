@@ -109,6 +109,11 @@ RSpec.describe Tolken::Translates do
       end
     end
 
+    describe "serialization" do
+      it "serialize correctly to json string" do
+        expect(post.to_json).to eq("{\"id\":1,\"title\":{\"en\":\"Hi\",\"sv\":\"Hej\"}}")
+        expect(post.title.to_json).to eq("{\"en\":\"Hi\",\"sv\":\"Hej\"}")
+      end
     end
   end
 end
