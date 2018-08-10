@@ -135,7 +135,7 @@ The specs for [translates](spec/tolken/translates_spec.rb) is a good resource of
 ## Development
 
 ### Native dependencies
-You need to have Postgres installed on your system. This can be done on Mac OS with `brew install postgres`.
+You need to have postgresql installed on your system. This can be done on Mac OS with `brew install postgresql`.
 
 ### Ruby setup
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
