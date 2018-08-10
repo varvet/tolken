@@ -16,10 +16,10 @@ module Tolken
 
     def define_getter(field_name)
       define_method(field_name) do |locale = nil|
-        return self[field_name.to_sym] unless locale
+        return self[field_name] unless locale
 
         begin
-          self[field_name.to_sym].fetch(locale.to_s)
+          self[field_name].fetch(locale.to_s)
         rescue IndexError
           raise ArgumentError, "Invalid locale #{locale}" unless I18n.available_locales.include?(locale.to_sym)
           nil
