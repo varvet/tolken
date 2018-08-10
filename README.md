@@ -66,7 +66,11 @@ post = Post.create(title: { en: "News", sv: "Nyheter" })
 post.title # => { en: "News", sv: "Nyheter" }
 post.title(:en) # => "News"
 post.title(:sv) # => "Nyheter"
+post.title("sv") # => "Nyheter"
+post.title[:en] # => "News"
+post.title["en"] # => "News"
 post.title(:dk) # ArgumentError, "Invalid locale dk"
+post.title[:dk] # => nil
 post.title(:de) # => nil
 
 post.title = { en: "News", sv: "Nyheter" }

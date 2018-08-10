@@ -33,9 +33,14 @@ RSpec.describe Tolken::Translates do
         expect(post.title).to eq("en" => "Hi", "sv" => "Hej")
       end
 
-      it "returns a the given translation if given a translation key" do
+      it "returns a the given translation if given a symbol translation key" do
         expect(post.title(:en)).to eq("Hi")
         expect(post.title(:sv)).to eq("Hej")
+      end
+
+      it "returns a the given translation if given a string translation key" do
+        expect(post.title("en")).to eq("Hi")
+        expect(post.title("sv")).to eq("Hej")
       end
 
       it "returns nil if given registered locale key that has no translation" do
@@ -44,6 +49,11 @@ RSpec.describe Tolken::Translates do
 
       it "raises argument error if given non-registered locale key missing translation" do
         expect { post.title(:xy) }.to raise_error(ArgumentError, "Invalid locale xy")
+      end
+
+      it "can be read as a plain hash with indifferent access" do
+        expect(post.title[:en]).to eq("Hi")
+        expect(post.title["en"]).to eq("Hi")
       end
     end
 
