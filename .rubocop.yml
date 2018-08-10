@@ -498,6 +498,7 @@ Style/PercentLiteralDelimiters:
     "%w": "[]"
     "%W": "[]"
     "%Q": "{}"
+    "%q": "{}"
 
 Style/PercentQLiterals:
   EnforcedStyle: upper_case_q

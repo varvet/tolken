@@ -11,11 +11,11 @@ Gem::Specification.new do |spec|
   spec.email         = ["nicklas.ramhoj@varvet.com", "julia.friberg@varvet.com"]
 
   spec.summary       = "Straightforward Rails database translations using psql jsonb"
-  spec.description   = """
+  spec.description   = %q{
     Tolken's API is more verbose than most similar gems. The idea is that you should be aware of when you're dealing with
     translatable fields and what language you're interested in in any given moment. In tolken a translatable field is just a
     Ruby hash which makes it easy to reason about.
-  """
+  }
   spec.homepage      = "https://github.com/varvet/tolken"
   spec.license       = "MIT"
 
