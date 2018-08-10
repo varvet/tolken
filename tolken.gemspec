@@ -7,8 +7,8 @@ require "tolken/version"
 Gem::Specification.new do |spec|
   spec.name          = "tolken"
   spec.version       = Tolken::VERSION
-  spec.authors       = ["Nicklas Ramhöj, Julia Friberg"]
-  spec.email         = ["nicklas.ramhoj@varvet.com, julia.friberg@varvet.com"]
+  spec.authors       = ["Nicklas Ramhöj", "Julia Friberg"]
+  spec.email         = ["nicklas.ramhoj@varvet.com", "julia.friberg@varvet.com"]
 
   spec.summary       = "Straightforward Rails database translations using psql jsonb"
   spec.description   = """
