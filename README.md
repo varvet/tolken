@@ -164,5 +164,13 @@ To create a pull request follow these steps:
     $ git rebase master
     $ git push
 
+## Alternative solutions
+
+* [Traco](https://github.com/barsoom/traco) - use multiple columns in the same model (Barsoom)
+* [Mobility](https://github.com/shioyama/mobility) - pluggable translation framework supporting many strategies, including translatable columns, translation tables and hstore/jsonb (Chris Salzberg)
+* [hstore_translate](https://github.com/cfabianski/hstore_translate) - use PostgreSQL's hstore datatype to store translations, instead of separate translation tables (Cédric Fabianski)
+* [json_translate](https://github.com/cfabianski/json_translate) - use PostgreSQL's json/jsonb datatype to store translations, instead of separate translation tables (Cédric Fabianski)
+* [Trasto](https://github.com/yabawock/trasto) - store translations directly in the model in a Postgres Hstore column
+
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
