@@ -25,6 +25,7 @@ module Tolken
           self[field_name].fetch(locale.to_s)
         rescue IndexError
           raise ArgumentError, "Invalid locale #{locale}" unless I18n.available_locales.include?(locale.to_sym)
+
           nil
         end
       end
