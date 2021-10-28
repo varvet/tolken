@@ -6,13 +6,13 @@ module Tolken
       define_getter(field_name)
       serialize(field_name, HashSerializer)
 
-      if options[:presence]
-        validation_names = I18n.available_locales.map { |locale| "#{field_name}_#{locale}" }
-        readers = store_accessor(field_name, *validation_names)
-        private(*(readers + readers.map { |name| "#{name}=" }))
+      return unless options[:presence]
 
-        define_validator(field_name) if options[:presence]
-      end
+      validation_names = I18n.available_locales.map { |locale| "#{field_name}_#{locale}" }
+      readers = store_accessor(field_name, *validation_names)
+      private(*(readers + readers.map { |name| "#{name}=" }))
+
+      define_validator(field_name) if options[:presence]
     end
 
     private
