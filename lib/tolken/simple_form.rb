@@ -9,7 +9,7 @@ module Tolken
     class JsonbInput < ::SimpleForm::Inputs::StringInput
       include ActionView::Helpers::OutputSafetyHelper
 
-      def input(_wrapper_options = {})
+      def input(_wrapper_options = {}) # rubocop:disable Metrics/AbcSize
         safe_join(
           I18n.available_locales.map do |locale|
             options = {

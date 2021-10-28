@@ -21,7 +21,7 @@ RSpec.describe Tolken::SimpleForm::JsonbInput do
   let(:column) { "title" }
   let(:input_type) { spy("input_type") }
   let(:input_options) { {} }
-  let(:input_builder) { Tolken::SimpleForm::JsonbInput.new(builder, attribute_name, column, input_type, input_options) }
+  let(:input_builder) { described_class.new(builder, attribute_name, column, input_type, input_options) }
 
   describe "#input" do
     context "with no input options given" do
